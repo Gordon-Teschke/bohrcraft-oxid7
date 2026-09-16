@@ -1,0 +1,10 @@
+<footer class="footer bohrcraft-footer"><div class="container-xxl py-5"><div class="row g-4">
+<section class="col-12 col-lg-5" aria-labelledby="bohrcraft-company-title"><h2 class="h4" id="bohrcraft-company-title">Bohrcraft Werkzeuge</h2>{% include_content "oxcompanyadress" ignore missing %}</section>
+<nav class="col-6 col-lg-3" aria-labelledby="bohrcraft-service-title"><h2 class="h4" id="bohrcraft-service-title">Service</h2><ul class="list-unstyled">
+<li><a href="{{ seo_url({ ident: oViewConf.getSelfLink() ~ 'cl=contact' }) }}">{% if oView.getActiveLangAbbr() == 'en' %}Contact{% else %}Kontakt{% endif %}</a></li>
+<li><a href="{{ seo_url({ ident: oViewConf.getSelfLink() ~ 'cl=contact2' }) }}">{% if oView.getActiveLangAbbr() == 'en' %}Order catalogue{% else %}Katalog bestellen{% endif %}</a></li>
+{% ifcontent ident "oxsecurityinfo" set privacy %}<li><a href="{{ privacy.getLink()|raw }}">{% if oView.getActiveLangAbbr() == 'en' %}Privacy policy{% else %}Datenschutz{% endif %}</a></li>{% endifcontent %}
+{% ifcontent ident "oximpressum" set imprint %}<li><a href="{{ imprint.getLink()|raw }}">{% if oView.getActiveLangAbbr() == 'en' %}Legal notice{% else %}Impressum{% endif %}</a></li>{% endifcontent %}
+</ul></nav>
+<nav class="col-6 col-lg-4" aria-labelledby="bohrcraft-products-title"><h2 class="h4" id="bohrcraft-products-title">{% if oView.getActiveLangAbbr() == 'en' %}Products{% else %}Produkte{% endif %}</h2>{% include "widget/footer/categorylist.html.twig" %}</nav>
+</div></div><div class="bohrcraft-legal py-3"><div class="container-xxl d-flex flex-wrap justify-content-between gap-2"><span>© {{ "now"|date("Y") }} BOHRCRAFT Werkzeuge GmbH &amp; Co. KG</span><button type="button" class="btn btn-link p-0" data-consent-settings>{% if oView.getActiveLangAbbr() == 'en' %}External content settings{% else %}Externe Inhalte einstellen{% endif %}</button></div></div></footer>

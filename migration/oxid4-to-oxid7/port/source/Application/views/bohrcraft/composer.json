@@ -1,0 +1,1 @@
+{"name":"bohrcraft/oxid7-theme","description":"Bohrcraft APEX child theme","type":"oxideshop-theme","license":"proprietary","require":{"oxid-esales/apex-theme":"^3.1"},"extra":{"oxideshop":{"assets-directory":"out/bohrcraft","target-directory":"bohrcraft"}}}
