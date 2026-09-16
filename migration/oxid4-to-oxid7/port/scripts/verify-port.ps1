@@ -5,8 +5,10 @@ $results=[Collections.Generic.List[object]]::new()
 function Add-Result($Check,$Passed,$Details){$results.Add([pscustomobject]@{Check=$Check;Passed=[bool]$Passed;Details=$Details})}
 $portRoot=Split-Path -Parent $PSScriptRoot
 Get-ChildItem -LiteralPath $portRoot -Recurse -Filter '*.php'|ForEach-Object{$output=& $Php -l $_.FullName 2>&1;Add-Result "php:$($_.Name)" ($LASTEXITCODE -eq 0) ($output -join ' ')}
-& node --check (Join-Path $portRoot 'source\out\bohrcraft\src\js\bohrcraft.js')
-Add-Result 'javascript:bohrcraft.js' ($LASTEXITCODE -eq 0) 'node --check'
+foreach($scriptName in @('bohrcraft-external.js','bohrcraft-navigation.js','bohrcraft-animations.js')){
+  & node --check (Join-Path $portRoot ('source\out\bohrcraft\src\js\'+$scriptName))
+  Add-Result ('javascript:'+$scriptName) ($LASTEXITCODE -eq 0) 'node --check'
+}
 $urls=@('/','/de/Marken/','/Produkte/Unser-Werkzeugprogramm/','/Service/Aktionen','/Unternehmen/Profil','/kontakt/','/index.php?cl=contact2','/de/Service/Downloads-Online-Blaettern-News/','/de/Datenschutz/','/de/Impressum/','/de/Nach-Hersteller/Bohrcraft/Werkzeughalter-mit-Knarre-kurze-Ausfuehrung.html','/Brands/','/Privacy-Policy/')
 foreach($path in $urls){try{$response=Invoke-WebRequest -Uri ($BaseUrl+$path) -UseBasicParsing -MaximumRedirection 8 -TimeoutSec 30;$clean=($response.StatusCode -eq 200 -and $response.Content -notmatch 'Fatal error|Template not found|EXCEPTION_SYSTEMCOMPONENT');Add-Result "http:$path" $clean "status=$($response.StatusCode); bytes=$($response.Content.Length)"}catch{Add-Result "http:$path" $false $_.Exception.Message}}
 $downloads=@('/out/files/PDF/AGB_Bohrcraft.pdf','/out/files/PDF/BOHRCRAFT_HK2024_DE_EN_web.pdf','/out/files/PDF/anwendung-empfehlung/anwendungsuebersicht_spiralbohrer.pdf')

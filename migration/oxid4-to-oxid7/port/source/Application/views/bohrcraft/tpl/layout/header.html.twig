@@ -1,26 +1,42 @@
+{{ style({ include: 'css/bohrcraft.css' }) }}
+{{ script({ include: 'js/bohrcraft-external.js', dynamic: __oxid_include_dynamic }) }}
+{{ script({ include: 'js/bohrcraft-navigation.js', dynamic: __oxid_include_dynamic }) }}
+{{ script({ include: 'js/bohrcraft-animations.js', dynamic: __oxid_include_dynamic }) }}
 {% if oViewConf.getTopActionClassName() != 'clearcookies' and oViewConf.getTopActionClassName() != 'mallstart' %}{{ include_widget({ cl: "oxwCookieNote", _parent: oView.getClassKey(), nocookie: 1 }) }}{% endif %}
 {% set externalConsent = get_global_cookie("oxomiconsent") %}
 {% if externalConsent != "1" and externalConsent != "0" %}
 <section class="bohrcraft-consent" id="bohrcraft-external-consent" aria-label="{% if oView.getActiveLangAbbr() == 'en' %}External content settings{% else %}Einstellungen für externe Inhalte{% endif %}">
-<div class="container-xxl bohrcraft-consent-inner">
-<p class="mb-2">{% if oView.getActiveLangAbbr() == 'en' %}Essential session cookies are used. OXOMI catalogs are loaded only with your consent; videos and maps only after an explicit click.{% else %}Es werden technisch notwendige Session-Cookies verwendet. OXOMI-Kataloge laden wir nur mit deiner Zustimmung; Videos und Karten erst nach einem ausdrücklichen Klick.{% endif %}</p>
-<label class="form-check mb-2"><input class="form-check-input" type="checkbox" id="bohrcraft-oxomi-consent"><span class="form-check-label">{% if oView.getActiveLangAbbr() == 'en' %}Allow external OXOMI content{% else %}Externe OXOMI-Inhalte erlauben{% endif %}</span></label>
-<div class="d-flex gap-2 flex-wrap"><button class="btn btn-primary" type="button" data-consent-save>{% if oView.getActiveLangAbbr() == 'en' %}Confirm selection{% else %}Auswahl bestätigen{% endif %}</button><button class="btn btn-outline-secondary" type="button" data-consent-reject>{% if oView.getActiveLangAbbr() == 'en' %}Reject{% else %}Ablehnen{% endif %}</button></div>
-</div></section>
+  <div class="container-xxl bohrcraft-consent-inner">
+    <p>{% if oView.getActiveLangAbbr() == 'en' %}Essential session cookies are used. OXOMI catalogs are loaded only with your consent; videos and maps only after an explicit click.{% else %}Es werden technisch notwendige Session-Cookies verwendet. OXOMI-Kataloge laden wir nur mit deiner Zustimmung; Videos und Karten erst nach einem ausdrücklichen Klick.{% endif %}</p>
+    <label class="form-check"><input class="form-check-input" type="checkbox" id="bohrcraft-oxomi-consent"><span class="form-check-label">{% if oView.getActiveLangAbbr() == 'en' %}Allow external OXOMI content{% else %}Externe OXOMI-Inhalte erlauben{% endif %}</span></label>
+    <div class="bohrcraft-consent-actions"><button class="btn btn-primary" type="button" data-consent-save>{% if oView.getActiveLangAbbr() == 'en' %}Confirm selection{% else %}Auswahl bestätigen{% endif %}</button><button class="btn btn-outline-secondary" type="button" data-consent-reject>{% if oView.getActiveLangAbbr() == 'en' %}Reject{% else %}Ablehnen{% endif %}</button></div>
+  </div>
+</section>
 {% endif %}
-<header class="header bohrcraft-header"><div class="container-xxl py-3"><div class="d-flex align-items-center justify-content-between gap-3">
-<a href="{{ oViewConf.getHomeLink()|raw }}" title="{{ oxcmp_shop.oxshops__oxname.value }}" class="bohrcraft-logo"><img src="{{ oViewConf.getImageUrl(oViewConf.getViewThemeParam('sLogoFile'))|raw }}" alt="{{ oxcmp_shop.oxshops__oxname.value }}" width="300" height="69"></a>
-<div class="bohrcraft-brand-family d-none d-md-flex align-items-center gap-3" aria-label="Bohrcraft Marken"><img src="{{ oViewConf.getImageUrl('logo_profiplus.png')|raw }}" alt="Profi Plus"><img src="{{ oViewConf.getImageUrl('mini-logo-bc.png')|raw }}" alt="Bohrcraft"></div>
-<div class="bohrcraft-header-tools d-flex align-items-center gap-2">{% include "widget/header/search.html.twig" %}{{ include_widget({ cl: "oxwLanguageList", lang: oViewConf.getActLanguageId(), _parent: oView.getClassKey(), nocookie: 1, _navurlparams: oViewConf.getNavUrlParams(), anid: oViewConf.getActArticleId() }) }}</div>
-</div></div>{{ include_widget({ cl: "oxwCategoryTree", cnid: oView.getCategoryId(), sWidgetType: "header", style: "", _parent: oView.getClassKey(), nocookie: 1 }) }}
-{% if oView.showSearch() %}
-<div class="fixed-bottom mobile-nav d-lg-none">
-<button class="btn btn-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ "MENU"|translate }}">
-{% include "icons/bars.svg" %}<span class="btn-text">{{ "MENU"|translate }}</span>
-</button>
-<a href="#" class="btn btn-toggle btn-search" data-bs-toggle="collapse" data-bs-target="#searchForm" aria-controls="searchForm" aria-expanded="false">
-<svg aria-hidden="true"><use xlink:href="#search"></use></svg><span class="btn-text">{{ "SEARCH"|translate }}</span>
-</a>
-</div>
-{% endif %}
+<header id="header" class="bohrcraft-header">
+  <div class="bc-header-main">
+    <div class="container-xxl bc-header-grid">
+      <a href="{{ oViewConf.getHomeLink()|raw }}" title="{{ oxcmp_shop.oxshops__oxname.value }}" class="bohrcraft-logo"><img src="{{ oViewConf.getImageUrl(oViewConf.getViewThemeParam('sLogoFile'))|raw }}" alt="{{ oxcmp_shop.oxshops__oxname.value }}" width="173" height="105"></a>
+      <p class="bc-slogan">{% if oView.getActiveLangAbbr() == 'en' %}Competence since 1975{% else %}Kompetenz seit 1975{% endif %}</p>
+      <a class="bc-family-logo bc-family-plus" href="{{ oViewConf.getHomeLink()|raw }}" aria-label="Profi Plus"><img src="{{ oViewConf.getImageUrl('logo_profiplus.png')|raw }}" alt="Profi Plus"></a>
+      <a class="bc-family-logo bc-family-basic" href="{{ oViewConf.getHomeLink()|raw }}" aria-label="Profi Basic"><img src="{{ oViewConf.getImageUrl('logo_profibasic.png')|raw }}" alt="Profi Basic"></a>
+    </div>
+  </div>
+  <div class="bc-nav-shell">
+    <div class="container-xxl bc-mobile-nav-head d-lg-none">
+      <button class="bc-menu-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ 'MENU'|translate }}"><span></span><span></span><span></span><b>{{ 'MENU'|translate }}</b></button>
+      <a class="bc-mini-logo" href="{{ oViewConf.getHomeLink()|raw }}"><img src="{{ oViewConf.getImageUrl('mini-logo-bc.png')|raw }}" alt="Bohrcraft"></a>
+      <div class="bc-language">{{ include_widget({ cl: "oxwLanguageList", lang: oViewConf.getActLanguageId(), _parent: oView.getClassKey(), nocookie: 1, _navurlparams: oViewConf.getNavUrlParams(), anid: oViewConf.getActArticleId() }) }}</div>
+    </div>
+    <div class="bc-desktop-nav container-xxl d-none d-lg-flex">
+      <a class="bc-sticky-logo" href="{{ oViewConf.getHomeLink()|raw }}"><img src="{{ oViewConf.getImageUrl('mini-logo-bc.png')|raw }}" alt="Bohrcraft"></a>
+      <div class="bc-language">{{ include_widget({ cl: "oxwLanguageList", lang: oViewConf.getActLanguageId(), _parent: oView.getClassKey(), nocookie: 1, _navurlparams: oViewConf.getNavUrlParams(), anid: oViewConf.getActArticleId() }) }}</div>
+    </div>
+    {{ include_widget({ cl: "oxwCategoryTree", cnid: oView.getCategoryId(), sWidgetType: "header", style: "", _parent: oView.getClassKey(), nocookie: 1 }) }}
+    <template id="bc-brand-menu-template"><div class="nav-level-2 bc-brand-mega"><div class="container-xxl"><div class="bc-brand-mega-grid">
+      <a class="bc-brand-mega-card" href="/{% if oView.getActiveLangAbbr() == 'en' %}Brands/Profi-Plus/{% else %}de/Marken/Profi-Plus/{% endif %}"><span class="bc-brand-content">{% include_content "oxsubmenumarken2" ignore missing %}</span><em>› {% if oView.getActiveLangAbbr() == 'en' %}More{% else %}Mehr{% endif %}</em></a>
+      <a class="bc-brand-mega-card" href="/{% if oView.getActiveLangAbbr() == 'en' %}Brands/oxid/{% else %}de/Marken/Profi-Basic/{% endif %}"><span class="bc-brand-content">{% include_content "oxsubmenumarken3" ignore missing %}</span><em>› {% if oView.getActiveLangAbbr() == 'en' %}More{% else %}Mehr{% endif %}</em></a>
+      <a class="bc-brand-mega-card" href="/{% if oView.getActiveLangAbbr() == 'en' %}Brands/Bohrcraft/{% else %}de/Marken/Bohrcraft/{% endif %}"><span class="bc-brand-content">{% include_content "oxsubmenumarken1" ignore missing %}</span><em>› {% if oView.getActiveLangAbbr() == 'en' %}More{% else %}Mehr{% endif %}</em></a>
+    </div></div></div></template>
+  </div>
 </header>

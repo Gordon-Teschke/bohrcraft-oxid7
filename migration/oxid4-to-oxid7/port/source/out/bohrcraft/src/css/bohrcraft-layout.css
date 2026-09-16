@@ -1,0 +1,37 @@
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bc-background);color:var(--bc-text);font-family:var(--bc-font-body);font-size:16px;font-weight:400;line-height:1.4286;letter-spacing:.04em}
+body>.container,.container-xxl{width:100%;max-width:var(--bc-container-width);padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+.wrapper,.content{background:#fff}
+.content{min-height:260px}
+a{color:var(--bc-text);text-decoration:none}
+a:hover,a:focus{color:var(--bc-primary);text-decoration:none}
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{margin-top:20px;margin-bottom:10px;color:var(--bc-primary);font-family:var(--bc-font-heading);font-weight:500;line-height:1.1;letter-spacing:.04em}
+h1,.h1,.bohrcraft-home h1{font-size:36px}h2,.h2{font-size:24px}h3,.h3{font-size:24px}h4,.h4{font-size:16px}
+p{margin-top:0;margin-bottom:10px}
+main.content>.container-xxl:not(.bohrcraft-home),main.content>.container{padding-top:20px;padding-bottom:35px}
+.breadcrumb{font-size:13px;background:transparent;margin:10px auto 0;max-width:var(--bc-container-width);padding-left:15px;padding-right:15px}
+.bohrcraft-header{border:0!important}.bc-header-main{height:105px;background:linear-gradient(#e5e5e5,#fdfffc)}
+.bc-header-grid{height:105px;display:grid;grid-template-columns:3fr 5fr 2fr 2fr;align-items:center}
+.bohrcraft-logo{align-self:stretch;display:flex;align-items:center}
+.bohrcraft-logo img{display:block;width:173px;height:105px;object-fit:contain}
+.bc-slogan{margin:0;text-align:center;color:var(--bc-primary);font-size:19px;font-style:italic;font-weight:700}
+.bc-family-logo{display:flex;align-items:center;justify-content:flex-end;height:105px}
+.bc-family-logo img{display:block;max-width:100%;max-height:70px;width:auto;height:auto}
+.bc-family-plus img{max-width:150px}.bc-family-basic img{max-width:150px}
+.promoslider{width:100%;height:267px;overflow:hidden;background:#fff}
+.promoslider .carousel,.promoslider .carousel-inner,.promoslider .carousel-item{height:267px}
+.promoslider .carousel-item img{width:100%;height:267px;object-fit:cover;object-position:center}
+.promoslider .carousel-indicators{margin-bottom:7px}
+.promoslider .carousel-control-prev,.promoslider .carousel-control-next{width:8%}
+.bohrcraft-home{padding-top:20px!important;padding-bottom:35px!important;overflow:hidden}
+.bohrcraft-footer{margin-top:0;background:var(--bc-footer);color:#fff;font-size:14px;line-height:1.5}
+.bc-footer-main{padding-top:20px;padding-bottom:20px;min-height:0}
+.bohrcraft-footer h2{margin:0 0 16px;color:#f0f0f0;font-size:16px;font-weight:400}
+.bohrcraft-footer a,.bohrcraft-footer .btn-link{color:#fff}
+.bohrcraft-footer a:hover,.bohrcraft-footer .btn-link:hover{color:#333}
+.bohrcraft-footer ul{padding-left:0;margin:0;list-style:none}
+.bohrcraft-footer li{margin-bottom:7px}
+.bc-footer-contact .company-name{font-weight:700;margin-bottom:10px}
+.bohrcraft-legal{border-top:1px solid #858585;background:#888;font-size:13px}
+.bohrcraft-legal>.container-xxl{min-height:35px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.bohrcraft-legal .btn{font:inherit;text-decoration:none}

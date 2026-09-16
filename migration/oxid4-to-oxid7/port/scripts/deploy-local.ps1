@@ -21,7 +21,7 @@ Push-Location $ShopRoot
 try{& $Composer dump-autoload;if($LASTEXITCODE){throw 'Composer dump-autoload failed.'}}finally{Pop-Location}
 $console=Join-Path $ShopRoot 'vendor\bin\oe-console'
 Push-Location (Join-Path $source 'out\modules')
-try{$moduleConfig=Join-Path $ShopRoot 'var\configuration\shops\1\modules\bohrcraft_contact.yaml';if(Test-Path -LiteralPath $moduleConfig){& $Php $console oe:module:deactivate bohrcraft_contact -n;if($LASTEXITCODE){throw 'Module deactivation failed.'}};& $Php $console oe:module:install $moduleTarget -n;if($LASTEXITCODE){throw 'Module installation failed.'};& $Php $console oe:module:activate bohrcraft_contact -n;if($LASTEXITCODE){throw 'Module activation failed.'}}finally{Pop-Location}
+try{$moduleConfig=Join-Path $ShopRoot 'var\configuration\shops\1\modules\bohrcraft_contact.yaml';if(Test-Path -LiteralPath $moduleConfig){& $Php $console oe:module:deactivate bohrcraft_contact -n;if($LASTEXITCODE){throw 'Module deactivation failed.'}}else{& $Php $console oe:module:install $moduleTarget -n;if($LASTEXITCODE){throw 'Module installation failed.'}};& $Php $console oe:module:activate bohrcraft_contact -n;if($LASTEXITCODE){throw 'Module activation failed.'}}finally{Pop-Location}
 Push-Location $ShopRoot
 try{& $Php $console oe:theme:activate bohrcraft -n;if($LASTEXITCODE){throw 'Theme activation failed.'};& $Php $console oe:cache:clear}finally{Pop-Location}
 Write-Host 'Bohrcraft theme and contact module deployed and activated.'

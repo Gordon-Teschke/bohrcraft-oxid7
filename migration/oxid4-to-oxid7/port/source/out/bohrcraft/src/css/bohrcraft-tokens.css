@@ -1,0 +1,26 @@
+@font-face{font-family:"Material Icons";src:url("../fonts/Material-Icons/MaterialIcons-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:"Poppins";src:url("../fonts/Poppins/Poppins-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Poppins";src:url("../fonts/Poppins/Poppins-Italic.ttf") format("truetype");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Poppins";src:url("../fonts/Poppins/Poppins-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Poppins";src:url("../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Poppins";src:url("../fonts/Poppins/Poppins-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+:root{
+  --bc-primary:#002e67;
+  --bc-primary-dark:#002552;
+  --bc-secondary:#676767;
+  --bc-text:#676767;
+  --bc-muted:#999;
+  --bc-background:#fff;
+  --bc-surface:#ebf2fa;
+  --bc-border:#d6d6d6;
+  --bc-footer:#999;
+  --bc-danger:#c31b2d;
+  --bc-font-body:"Poppins","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --bc-font-heading:"Poppins","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --bc-container-width:1170px;
+  --bc-section-gap:35px;
+  --bc-radius:0;
+  --bc-transition-fast:180ms;
+  --bc-transition-normal:500ms;
+  --bc-shadow:5px 5px 15px -5px rgba(0,0,0,.7);
+}

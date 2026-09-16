@@ -1,0 +1,66 @@
+@media (max-width:1199.98px){
+  :root{--bc-container-width:100%}
+  .bc-header-grid{padding-right:24px;padding-left:24px}
+}
+@media (max-width:991.98px){
+  .bc-header-main,.bc-header-grid{height:132px}
+  .bc-header-grid{grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:88px 44px;padding-right:15px;padding-left:15px}
+  .bohrcraft-logo{grid-column:1;grid-row:1}.bohrcraft-logo img{width:145px;height:88px}
+  .bc-family-plus{grid-column:2;grid-row:1;height:88px}.bc-family-basic{grid-column:3;grid-row:1;height:88px}
+  .bc-family-logo img{max-width:122px;max-height:55px}
+  .bc-slogan{grid-column:1/4;grid-row:2;font-size:16px}
+  .bc-nav-shell{height:54px}
+  .bc-nav-shell>.container-xxl:not(.bc-mobile-nav-head){height:auto;padding:0}
+  #mainnav{min-height:0}
+  #navbarSupportedContent{position:absolute!important;top:54px;left:0;right:0;z-index:60;width:100%!important;margin:0!important;max-height:calc(100vh - 54px);overflow-y:auto;background:var(--bc-primary)!important;box-shadow:0 10px 20px rgba(0,0,0,.35)}
+  #navigation{display:block;width:100%!important;max-width:none;height:auto;padding:7px 15px 18px!important}
+  #navigation>.nav-item{position:relative;border-bottom:1px solid rgba(255,255,255,.18)}
+  #navigation .nav-link-1{height:auto;min-height:46px;padding:12px 8px;font-size:16px}
+  #navigation .has-subs>.nav-link-1{padding-right:44px}
+  #navigation .has-subs>.nav-link-1::after{position:absolute;display:block;margin-left:0;right:12px;content:"+";font-size:22px;line-height:20px}
+  #navigation .has-subs.is-open>.nav-link-1::after{content:"−"}
+  #navigation .nav-level-2{position:static!important;width:100%!important;max-height:0!important;box-shadow:none!important;transform:none!important;background:#fff}
+  #navigation>.has-subs:hover>.nav-level-2,#navigation>.has-subs:focus-within>.nav-level-2{max-height:0!important;visibility:hidden;opacity:0}
+  #navigation>.has-subs.is-open>.nav-level-2{max-height:1200px!important;visibility:visible;opacity:1}
+  #navigation .nav-level-2>.container-xxl{padding:10px 15px}
+  #navigation .nav-level-2 .row{margin:0}
+  #navigation .nav-level-2 .col-lg-4{padding:0}
+  #navigation .nav-item-2 .nav-link{padding:9px 5px}
+  .bc-brand-mega-grid{grid-template-columns:1fr}
+  .bc-brand-mega-card{min-height:0;padding:14px 8px;border-right:0;border-bottom:1px solid #ddd}
+  .bc-brand-mega-logo{height:46px}.bc-brand-mega-logo img{max-height:40px;max-width:150px}
+  .bohrcraft-external[data-external-provider="youtube"]{min-height:340px}.promoslider{height:220px}.promoslider .carousel,.promoslider .carousel-inner,.promoslider .carousel-item,.promoslider .carousel-item img{height:220px}
+  .panel2>div>div:first-of-type{width:25%}
+  .visible-sm-block{display:block}
+}
+@media (max-width:767.98px){
+  body{font-size:15px;line-height:1.5;letter-spacing:.025em}
+  h1,.h1,.pageheader{font-size:27px}h2,.h2{font-size:22px}h3,.h3{font-size:20px}
+  .bc-header-main,.bc-header-grid{height:154px}
+  .bc-header-grid{grid-template-columns:1.25fr .9fr .9fr;grid-template-rows:108px 46px}
+  .bohrcraft-logo img{width:138px;height:100px}
+  .bc-family-logo{height:108px}.bc-family-logo img{max-width:104px;max-height:48px}
+  .bc-slogan{font-size:15px}
+  .promoslider{display:none}
+  .bohrcraft-home{padding-top:18px!important}
+  .panel1container .row>div[class*="col-"]{margin-bottom:24px}
+  .panel3:hover,.panel2>div:hover{box-shadow:none;transform:none}
+  .panel2>div>div:first-of-type{width:28%}
+  .panel2 .text>img{max-height:34px}
+  .content img[align=right],.content img[align=left]{float:none;display:block;max-width:100%;margin:15px auto!important}
+  .bc-footer-main{padding-top:28px;padding-bottom:22px}
+  .bohrcraft-footer .row>section,.bohrcraft-footer .row>nav{margin-bottom:24px}
+  .bohrcraft-legal>.container-xxl{padding-top:12px;padding-bottom:12px;align-items:flex-start;flex-direction:column;gap:4px}
+  .bohrcraft-external-frame{min-height:260px}
+  .hidden-xs{display:none!important}.visible-xs-block{display:block!important}
+  .col-xs-12{flex:0 0 auto;width:100%}.col-xs-6{flex:0 0 auto;width:50%}
+}
+@media (max-width:479.98px){
+  .bc-header-grid{grid-template-columns:1.2fr 1fr;grid-template-rows:76px 76px}
+  .bohrcraft-logo{grid-column:1;grid-row:1/3}.bohrcraft-logo img{width:138px;height:145px}
+  .bc-family-plus{grid-column:2;grid-row:1;height:76px}.bc-family-basic{grid-column:2;grid-row:2;height:76px}
+  .bc-family-logo{justify-content:center}.bc-family-logo img{max-width:118px;max-height:52px}
+  .bc-slogan{display:none}
+  .panel2>div>div.text{font-size:13px}.panel2>div>div.text>img{height:auto;max-height:30px}
+  .panel2 .bottom-section{position:static;margin-top:10px}
+}

@@ -1,3 +1,2 @@
 {% capture append = "oxidBlock_content" %}<h1 class="visually-hidden">{{ translate({ ident: "PAGE_TITLE_START" }) }}</h1>{% include "widget/promoslider.html.twig" %}<main class="container-xxl bohrcraft-home py-4">{% include_content "oxstartwelcome" ignore missing %}</main>{{ insert_tracker() }}{% endcapture %}
-{% capture append = "oxidBlock_pageScript" %}<script src="{{ oViewConf.getResourceUrl('js/bohrcraft.js')|raw }}" defer></script>{% endcapture %}
 {% include "layout/page.html.twig" %}
