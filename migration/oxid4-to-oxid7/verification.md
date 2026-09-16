@@ -80,4 +80,72 @@ Damit ist verifiziert, dass `bohrcraft_oxid4` unveraendert blieb.
 - 63 OXID-7-Views vorhanden.
 - 0 Views referenzieren `bohrcraft_oxid4`.
 - 32 migrierte Shop-ID-Felder geprueft; 0 Werte weichen von Ziel-Shop-ID 1 ab.
+## Vollportierung: automatisierte Prüfung
 
+`port/scripts/verify-port.ps1` wurde nach dem letzten Deployment erfolgreich ausgeführt. Geprüft wurden vier PHP-Dateien, `bohrcraft.js`, verbliebene Smarty-Tags im Theme, CMS-Sondercode in der Datenbank, 13 repräsentative HTTP-Seiten und drei PDF-Downloads. Alle Prüfpunkte sind bestanden.
+
+| Bereich | Ergebnis |
+|---|---|
+| PHP-Lint Theme/Modul | 4/4 OK |
+| JavaScript `node --check` | OK |
+| Smarty-Reste Theme | 0 |
+| Smarty-Reste relevante DB-Felder | 0 |
+| direkte CMS-iframes vor Consent | 0 |
+| OXOMI-Kategorietemplate | 1 korrekt zugeordnet |
+| repräsentative Seiten | 13/13 HTTP 200 |
+| PDF-Downloads | 3/3 HTTP 200, `application/pdf` |
+
+Getestete Seiten:
+
+- Startseite, Marken, Werkzeugprogramm, Aktionen und Unternehmensprofil
+- Kontakt und Katalogbestellung
+- Downloads/OXOMI, Datenschutz und Impressum
+- ein Produktdetail mit Varianten, Bild und Attributtabelle
+- englische Marken- und Datenschutzseite
+
+Getestete Downloads:
+
+- `AGB_Bohrcraft.pdf`
+- `BOHRCRAFT_HK2024_DE_EN_web.pdf`
+- `anwendungsuebersicht_spiralbohrer.pdf`
+
+## Browser-, Consent- und Responsive-Tests
+
+Die lokale URL ist `http://local.bohrcraft-oxid7.de`. Mit dem In-App-Browser wurden DOM, Interaktion, Konsole und drei Viewports geprüft.
+
+| Prüfung | Desktop 1440x900 | Tablet 768x1024 | Smartphone 390x844 |
+|---|---|---|---|
+| Logo/Header | OK | OK | OK, Logo 179 px breit |
+| Hauptnavigation | sichtbar | mobiler Schalter öffnet alle fünf Hauptpunkte | mobiler Schalter vorhanden |
+| horizontaler Überlauf | nur 3 px APEX-Rundung | nur 3 px APEX-Rundung | nur 3 px APEX-Rundung |
+| YouTube vor Klick | kein iframe | kein iframe | kein iframe |
+| Kontaktformular | OK | OK | 335 px breit, 10 Pflichtfelder |
+| Browser-Konsole | keine relevanten Einträge | 0 Warnungen/Fehler | 0 Warnungen/Fehler |
+
+YouTube lädt vor dem Klick weder iframe noch Video. Nach `Video laden` wurde genau ein `youtube-nocookie.com`-iframe erzeugt. OXOMI war vor Einwilligung nicht geladen; nach Zustimmung erschienen Kataloginhalte und zwei OXOMI-Skripte ohne Konsolenfehler. Google Maps war vor Klick nicht vorhanden und wurde erst durch `Karte laden` eingebettet. Das Kontaktformular wurde leer abgeschickt: die HTML5-Pflichtfeldprüfung markierte alle zehn Pflichtfelder, die URL blieb unverändert und es wurde keine Mail versendet.
+
+## Medien und Logs
+
+| Bereich | Quelle | Ziel | Ergebnis |
+|---|---:|---:|---|
+| `pictures` | 7.151 Dateien / 873.153.072 Byte | 7.156 Dateien / 873.180.593 Byte | OK; fünf dynamisch erzeugte Zielbilder |
+| `files` | 431 / 429.850.802 Byte | 431 / 429.850.802 Byte | identisch |
+| `downloads` | 7 / 2.130.271 Byte | 8 / 2.130.271 Byte | Nutzdaten identisch, eine technische Zieldatei |
+
+Das OXID-Log wurde während der Endprüfung beobachtet. Sein letzter Eintrag ist ein behobener Zwischenstand vom 16.09.2026 13:07:40; die abschließenden Deployments, HTTP-, Browser- und Formularprüfungen erzeugten keine neuen Einträge. Das Apache-Log enthält seit dem Neustart um 12:14:04 keine Bohrcraft-bezogenen Fehler. Ein separates PHP-Fehlerlog ist in dieser XAMPP-Installation nicht vorhanden.
+
+## Alt-/Neu-Vergleich
+
+| Seite/Funktion | OXID 4 / Live | OXID 7 lokal | Status / Abweichung |
+|---|---|---|---|
+| Startseite | FLOW/Smarty, CMS-Blöcke | APEX/Twig, gleiche CMS-Quellen | bewusst modernisiert, Inhalt/CI erhalten |
+| Navigation | Desktop/Mobil, fünf Hauptbereiche | APEX-Megamenü plus mobiler Collapse | OK |
+| Marken | drei Markenbereiche | Daten/Links und Logos erhalten | OK |
+| Produkte | eigene FLOW-Templates | native APEX-Listen/-Details | bewusst modernisiert; Varianten/Attribute/Herstellerlogo OK |
+| Downloads | lokale PDFs und OXOMI | lokale PDFs plus Consent-OXOMI | OK |
+| Videos | direkte CMS-iframes | 2-Klick, `youtube-nocookie.com` | datenschutzgerecht modernisiert |
+| Unternehmen | CMS/Kategorien | migrierte CMS-/Kategorieinhalte | OK |
+| Kontakt | Core-Hacks und Smarty | Modul plus Twig-Formular | OK; echter Mailversand nicht ausgelöst |
+| Anfahrt | Google Maps | Klick-zum-Laden | OK |
+| Rechtliches | CMS DE/EN | CMS DE/EN | OK |
+| Sprache | DE/EN | DE/EN | OK |

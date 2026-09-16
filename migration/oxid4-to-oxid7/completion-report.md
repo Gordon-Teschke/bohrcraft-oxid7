@@ -1,144 +1,161 @@
-# Abschlussbericht: Bohrcraft Datenbankmigration OXID 4 nach OXID 7
+# Abschlussbericht: Bohrcraft OXID 4 nach OXID 7
 
-## Umgebung
+Stand: 2026-09-16
 
-```text
-Projektroot:        D:\__code_workspace_mcp\bohrcraft
-OXID-4-Version:     OXID CE 4.9.7
-OXID-7-Version:     oxideshop-ce v7.5.1 / Metapackage v7.5.0
-Ziel-DB-Marker:     oxshops.OXVERSION = 6.0.0
-MySQL-Version:      5.6.50-log
-Quelle:             bohrcraft_oxid4 (read-only behandelt)
-Ziel:               bohrcraft_oxid7
-Schema-Zeichensatz: utf8 / utf8_general_ci
-```
+Die Datenbank-, CMS-, Theme- und Funktionsportierung ist lokal abgeschlossen. Die produktive Referenzseite und die OXID-4-Installation wurden nur gelesen; sämtliche Datenbankänderungen erfolgten in `bohrcraft_oxid7`.
 
-Der Auftragsname `bohr_oxid4` existiert lokal nicht. Der alte Shop ist in
-`config.inc.php` auf `bohrcraft_oxid4` konfiguriert; dieses Schema wurde nach
-Pruefung als Quelle verwendet.
+## A. Umgebung
 
-## Backups
+| Komponente | Wert |
+|---|---|
+| Projektroot OXID 4 | `D:\xampp\htdocs\www.bohrcraft-oxid4.de\httpdocs` |
+| Projektroot OXID 7 | `D:\xampp_php8\htdocs\www.bohrcraft.de\httpdocs\bohrcraft` |
+| OXID 4 | CE 4.9.7 |
+| OXID 7 | CE 7.5.1, Metapackage 7.5.0 |
+| FLOW | 2.3.0 |
+| APEX | 3.1.0 |
+| PHP OXID 4 | 7.1.6 |
+| PHP OXID 7 | 8.3.32 |
+| Composer | 2.8.11 |
+| Node / npm | 24.18.0 / 11.16.0 |
+| MySQL | 5.6.50-log |
+| lokale URL | `http://local.bohrcraft-oxid7.de` |
 
-```text
-Quelle Dump:
-D:\__code_workspace_mcp\bohrcraft\.backups\20260916_113850\bohrcraft_oxid4_before.sql
-SHA-256: A6FF13E8F30FEBD37F533CA548AF8AC1D66FA0A4D4105CE170A65CD7117788C7
+Vor der Vollportierung wurde `bohrcraft_oxid7` nach `D:\__code_workspace_mcp\bohrcraft\.backups\20260916_123752\bohrcraft_oxid7_before_full_port.sql` gesichert. Größe: 20.715.983 Byte; SHA-256: `26D962EC35B97325B3620CAA0783530041C04EADB97FF592552C08E69A3E2AD6`. Der Dump liegt außerhalb des Repositories.
 
-Ziel Dump:
-D:\__code_workspace_mcp\bohrcraft\.backups\20260916_113850\bohrcraft_oxid7_before.sql
-SHA-256: 9424EA02BD8DCFAC13D7D8908BA4B01C86C7F2F3C16CDF5FA400D8AA7452C68B
-```
+Aktiv blieben die vorhandenen Module `ddoemedialibrary`, `ddoewysiwyg`, `eyeable_assist`, `makaira_oxid-connect-essential`, `oegdproptin` und `oxps_usercentrics`; hinzu kam `bohrcraft_contact`.
 
-Beide Dumps wurden vor der ersten Zielaenderung erzeugt und enthalten den
-erfolgreichen `Dump completed`-Marker. Sie liegen ausserhalb der
-Shopverzeichnisse und sind durch `.gitignore` von einer Versionierung
-ausgeschlossen.
+## B. Neues Theme
 
-## Stoeberkiste-Referenz
+| Eigenschaft | Wert |
+|---|---|
+| Theme-ID | `bohrcraft` |
+| Parent | `apex` |
+| Parent-Version | 3.1.0 |
+| Installationspfad | `source\Application\views\bohrcraft` |
+| Assets | `source\out\bohrcraft` |
+| Aktiviert | ja |
 
-Gefunden wurden unter `D:\__gordon_codex_home\stoeberkiste\migration` die
-Skripte `oxid49_to_75_initial_transfer.sql`,
-`oxid49_to_75_remaining_transfer.sql`,
-`oxid49_to_75_config_shop_merge.sql` und
-`oxid49_to_75_oxconfig_decoded_merge.sql`.
+Eigene Twig-Dateien:
 
-Uebernommen wurden das spaltenbasierte Mapping, die Shop-ID-Umsetzung auf `1`,
-das Beibehalten der OXID-7-Struktur und die getrennte Behandlung von
-`oxconfig`/`oxshops`. Fuer Bohrcraft wurden zusaetzlich eine strikte
-Konfigurations-Whitelist, Quell-Checksummen, ID-Mengenpruefungen und die
-explizite Custom-Schema-Migration umgesetzt. Keine Stoeberkiste-Daten oder
--IDs wurden uebernommen.
+- `form/contact.html.twig`
+- `layout/header.html.twig`
+- `layout/footer.html.twig`
+- `page/info/contact.html.twig`
+- `page/info/contact2.html.twig`
+- `page/list/listoxomi.html.twig`
+- `page/shop/start.html.twig`
 
-## Datenbankanalyse
+Eigene Frontend-Schicht: `src/css/bohrcraft.css` und `src/js/bohrcraft.js`; Logos, Markenbilder und Favicons liegen unter `out/bohrcraft/img` bzw. im Asset-Root. Die gebauten APEX-3.1-Runtime-Assets sind Teil des Deployments. Es wurden weder APEX noch Dateien unter `vendor/` geändert. Eigene Sprachdateien waren nicht nötig: vorhandene APEX-Schlüssel werden wiederverwendet, die wenigen neuen Texte sind im jeweiligen Twig-Template vollständig DE/EN hinterlegt.
 
-- Quelle vorher/nachher: 73 Basistabellen, 67 Views, unveraendert.
-- Ziel vorher: 69 Basistabellen, 63 Views.
-- Ziel nachher: 72 Basistabellen, 63 Views.
-- Custom-Tabellen migriert: `jtl_connector_link`, `oxattributeset`,
-  `oxattribute2attributeset`.
-- Belegte Custom-Spalten in Artikeln, Attributen, Kategorien und
-  Attributzuordnungen migriert.
-- OXID-7-only Medien-, Makaira- und Migrationstabellen erhalten.
-- Trigger: keine in Quelle oder Ziel.
+## C. Smarty nach Twig
 
-Details: `database-analysis.md` und `evidence/*-before.tsv` / `*-after.tsv`.
+| Bereich | relevante Smarty-Basis | neue Twig-Dateien | Status / Hinweis |
+|---|---:|---:|---|
+| Layout/Header/Footer | 3 | 2 | gezielt neu auf APEX aufgebaut |
+| Startseite | 1 plus CMS-Includes | 1 | CMS bleibt redaktionelle Quelle |
+| Kontakt/Katalog | 5 Templates/Core-Controller | 3 plus Modul | ohne Core-Hack portiert |
+| OXOMI | 1 | 1 | Consent und Initialisierung neu strukturiert |
+| Produktlisten/-detail | mehrere FLOW-Overrides | 0 | APEX-native Varianten, Attribute und Herstellerlogo genutzt |
 
-## Migration
+Der offizielle OXID `smarty-to-twig-converter` wurde zunächst im Dry-run und danach ausschließlich gegen die Zieldatenbank ausgeführt. Das Ergebnis wurde manuell korrigiert: verschachteltes CMS wird mit `template_from_string` und `sanitize_html` gerendert, produktive absolute Links wurden root-relativ, und externe iframes wurden durch lokale Consent-Platzhalter ersetzt. Autoescaping wurde nicht global deaktiviert; Benutzereingaben bleiben escaped. Im Theme und in den relevanten Datenbankfeldern sind keine unbeabsichtigten Smarty-Tags übrig.
 
-- 60 gemeinsame OXID-Tabellen spaltenbasiert migriert.
-- 3 Custom-Tabellen migriert.
-- OXIDs und Beziehungen erhalten; 54 ID-Mengen ohne Abweichung.
-- Shop-IDs auf numerisch `1` umgesetzt.
-- `oxdiscount.OXSORT` wegen neuem OXID-7-Unique-Key deterministisch auf
-  1, 2 und 3 gesetzt.
-- Fachliche Shop-Stammdaten selektiv uebernommen.
-- 14 gepruefte fachliche Core-Konfigurationen entschluesselt uebernommen.
-- Alte Domains, Pfade, Cache, Sessions, Themes, Modulregistrierungen und
-  Zugangsdaten nicht kopiert.
-- Alte Views nicht kopiert; 63 Views mit dem offiziellen OXID-7.5.1-Generator neu erzeugt.
+## D. Datenbank / CMS
 
-Nicht migrierte Altbereiche und Begruendungen stehen in `table-mapping.md`.
+| Tabelle | Felder | Smarty vorher | danach | Status |
+|---|---|---:|---:|---|
+| `oxcontents` | `OXCONTENT`, `OXCONTENT_1` | 58 | 0 | OK, alle betroffenen DE/EN-Inhalte geprüft |
+| `oxcategories` | `OXLONGDESC`, `OXLONGDESC_1` | 2 | 0 | OK |
+| `oxactions` | `OXLONGDESC`, `OXLONGDESC_1` | 4 | 0 | OK |
+| `oxarticles` / `oxartextends` | Langtexte | 0 | 0 | OK |
 
-## Pruefung
+Direkte iframes in `oxcontents`: 0. Harte interne Links auf `https://www.bohrcraft.de/` in den geprüften CMS-, Kategorie- und Action-Feldern: 0. Das OXOMI-Kategorietemplate ist genau einmal als `page/list/listoxomi` zugeordnet. `protect-external-content.ps1` reproduziert die manuellen Nacharbeiten idempotent.
 
-Alle 63 migrierten Tabellen besitzen identische Datensatzanzahlen. Die
-wichtigsten Fachbereiche sind in `verification.md` tabellarisch aufgefuehrt.
+Die vorherige Datenmigration bleibt vollständig dokumentiert: 63 migrierte Tabellen haben identische Alt-/Neu-Counts, 54 OXID-ID-Mengen stimmen, die Quell-Checksummen vor/nachher sind identisch und es entstanden keine neuen Waisen.
 
-- 10 Artikelstichproben: OK
-- 5 Benutzerstichproben: OK
-- 10 Kategoriestichproben: OK
-- Bestellungen: Quelle und Ziel jeweils 0, daher keine fachliche Stichprobe
-- Neu entstandene Waisen: 0
-- Quell-Checksummen vor/nachher: identisch
-- Ziel-Views mit Quellreferenz: 0
-- Ziel-Shop-ID-Abweichungen: 0
+## E. Externe Einbindungen
 
-## Probleme
+| Dienst | Fundstelle alt | neue Implementierung | Consent | Testergebnis |
+|---|---|---|---|---|
+| YouTube | `bc_video1` bis `bc_video5`, direkte iframes | lokale Platzhalter in CMS, JS erzeugt iframe | expliziter Klick je Video | vor Klick 0 iframes, danach ein `youtube-nocookie.com`-iframe |
+| OXOMI | Download-Kategorie, altes `listoxomi.tpl` | `listoxomi.html.twig` plus einmaliger Script-Loader | global zustimmen/ablehnen | vor Zustimmung kein Script, danach Kataloge sichtbar, keine Konsolenfehler |
+| Google Maps | Kontakt/Anfahrt | Twig-Platzhalter mit `data-external-src` | expliziter Klick | vor Klick kein iframe, danach Google-Maps-iframe |
+| sonstige | Cookie-/Consent-Module | bestehende Module unangetastet | kein konkurrierender allgemeiner Cookie-Layer | OK |
 
-Behoben:
+Es wurden keine API-Keys oder Zugangsdaten ins Repository aufgenommen.
 
-- OXID 7 verlangt fuer `oxdiscount` eindeutige Sortierungen pro Shop;
-  OXID 4 hatte keine entsprechende Spalte. Deterministische Transformation
-  dokumentiert und verifiziert.
-- Defekte doppelte OXID-4-Zeilen fuer `aLanguages`/`aLanguageParams` erkannt;
-  nur gueltige serialisierte Werte wurden uebernommen.
+## F. Funktionsvergleich
 
-Verbleibend, bereits in der Quelle vorhanden:
+| Seite/Funktion | Alt | Neu | Status | Abweichung |
+|---|---|---|---|---|
+| Startseite | FLOW/Smarty, CMS-Bausteine | APEX/Twig, gleiche CMS-Bausteine | OK | Layout technisch modernisiert |
+| Desktop-Navigation | Megamenü | APEX-Megamenü | OK | Bootstrap 5 |
+| mobile Navigation | FLOW-Menü | APEX-Collapse mit Menü/Suche | OK | bewusst APEX-nativ |
+| Marken | Profi Plus, Profi Basic, Bohrcraft | Inhalte/Logos/Links erhalten | OK | keine fachliche |
+| Produktübersicht | FLOW-Raster | APEX-Raster, migrierte Kategorien/Bilder | OK | APEX-Optik |
+| Produktdetail | eigene FLOW-Anpassungen | APEX Varianten/Attribute/Herstellerlogo | OK | Altcode entfallen |
+| Downloads/PDFs | lokale Dateien | 431 Dateien übernommen, Stichproben 200 | OK | keine |
+| Anwendungstabellen | lokale PDFs/CMS | übernommen | OK | keine |
+| Katalog/OXOMI | externe Einbindung | Consent-gesteuerte Einbindung | OK | Datenschutz modernisiert |
+| Videos | direkte iframes | 2-Klick No-Cookie | OK | Datenschutz modernisiert |
+| Unternehmen | CMS/Kategorien | migriert | OK | keine fachliche |
+| Kontakt/Katalogformular | Core-Hacks | `bohrcraft_contact`-Modul | OK | echter Mailversand nicht ausgelöst |
+| Anfahrt | Maps | 2-Klick Maps | OK | Datenschutz modernisiert |
+| Impressum/Datenschutz | CMS DE/EN | CMS DE/EN | OK | keine |
+| DE/EN | vorhanden | Navigation, CMS, Rechtliches und Formtexte vorhanden | OK | keine |
 
-- 1 Attributzuordnung ohne Artikel.
-- 1488 Attributset-Zuordnungen zu 189 fehlenden Set-IDs.
+Die vollständige Alt-Theme-Matrix und die Entscheidung je Override stehen in `theme-analysis.md`; Sondercode außerhalb des Themes ist in `legacy-special-code.md` klassifiziert.
 
-Diese Altlasten wurden nicht automatisch geloescht, da sie nicht durch die
-Migration entstanden sind und die Quelle unveraendert abzubilden war.
+## G. Tests
 
-## Dateien
+`port/scripts/verify-port.ps1` meldet alle Prüfpunkte grün:
 
-```text
-.gitignore
-migration/oxid4-to-oxid7/README.md
-migration/oxid4-to-oxid7/database-analysis.md
-migration/oxid4-to-oxid7/table-mapping.md
-migration/oxid4-to-oxid7/verification.md
-migration/oxid4-to-oxid7/completion-report.md
-migration/oxid4-to-oxid7/sql/00-preflight.sql
-migration/oxid4-to-oxid7/sql/10-preserve-custom-schema.sql
-migration/oxid4-to-oxid7/sql/20-migrate-data.sql
-migration/oxid4-to-oxid7/sql/40-verify.sql
-migration/oxid4-to-oxid7/scripts/export-analysis.ps1
-migration/oxid4-to-oxid7/scripts/run-migration.ps1
-migration/oxid4-to-oxid7/scripts/verify-migration.ps1
-migration/oxid4-to-oxid7/evidence/*.tsv
-```
+- 4/4 PHP-Dateien syntaktisch gültig
+- `bohrcraft.js` besteht `node --check`
+- 13/13 repräsentative DE-/EN-Seiten liefern HTTP 200 ohne Fatal-/Template-Fehler
+- 3/3 PDF-Stichproben liefern HTTP 200 und `application/pdf`
+- 0 Smarty-Reste im Theme und in den relevanten DB-Feldern
+- OXOMI-Zuordnung und iframe-Schutz korrekt
 
-## Git
+Browserprüfung:
 
-```text
-Branch:       nicht vorhanden
-Commit-SHA:   nicht vorhanden
-Git-Status:   Projektroot ist kein Git-Repository
-```
+- Desktop 1440x900, Tablet 768x1024, Smartphone 390x844
+- mobiler Menüschalter öffnet `Marken`, `Produkte`, `Service`, `Unternehmen`, `Kontakt`
+- Startseite, Kontakt und OXOMI ohne relevante Browser-Warnung oder -Fehler
+- YouTube, OXOMI und Maps erst nach Freigabe/Klick
+- zehn Pflichtfelder verhindern leeres Kontaktformular ohne Netzwerkversand
+- produktseitig Varianten, Attributtabelle, Herstellerlogo und Bilder sichtbar
 
-Es wurden keine SQL-Dumps, Zugangsdaten oder Kundendaten in Git aufgenommen.
-Der Auftrag endet hier; Theme, Module, PHP, JavaScript, CSS, Medien und
-Frontend wurden nicht bearbeitet.
+Das OXID-Log erhielt seit dem letzten behobenen Zwischenfehler um 13:07:40 keine neuen Einträge. Apache meldete während der Endprüfung keine Bohrcraft-Fehler; ein separates PHP-Fehlerlog existiert lokal nicht. Details und URL-Liste: `verification.md`.
 
+## H. Offene Punkte
+
+| Problem | Auswirkung | Grund | nächster Schritt |
+|---|---|---|---|
+| Echter E-Mail-Versand nicht ausgelöst | SMTP/Zustellung nicht end-to-end bewiesen | verhindert unbeabsichtigte externe Nachricht | mit freigegebener Testadresse einmal gezielt senden |
+| Produktionsdeployment nicht durchgeführt | Ergebnis ist nur lokal aktiv | Produktivsystem war ausdrücklich nur Referenz | separaten Deployment-/Abnahmetermin verwenden |
+
+Es gibt keinen lokalen technischen Blocker. Ein CAPTCHA war in der ausgewerteten lokalen Formularlogik nicht aktiv; Pflichtfelder und Datenschutz-Zustimmung sind umgesetzt.
+
+## I. Git und Dateien
+
+Repository: `D:\__code_workspace_mcp\bohrcraft-oxid7`, Branch `main`.
+
+Neu bzw. ergänzt wurden:
+
+- `migration/oxid4-to-oxid7/port/source/Application/views/bohrcraft/`
+- `migration/oxid4-to-oxid7/port/source/out/bohrcraft/`
+- `migration/oxid4-to-oxid7/port/modules/bohrcraft/contact/`
+- `migration/oxid4-to-oxid7/port/scripts/`
+- sieben Analyse-, Konvertierungs- und Prüfberichte unter `migration/oxid4-to-oxid7/`
+- `README.md`, `verification.md` und dieser Abschlussbericht ergänzt
+
+Dumps, Zugangsdaten, Laufzeit-Cache und die rund 1,3 GB Medienbestände bleiben außerhalb von Git.
+
+Commits der Vollportierung:
+
+- `a4ceebd` `feat: create bohrcraft apex child theme`
+- `e784117` `feat: port contact and external content workflows`
+- Dokumentation und Verifikation: dieser abschließende Dokumentationscommit
+
+Der abschließende Arbeitsbaum wird nach dem Commit erneut auf Sauberkeit geprüft.
