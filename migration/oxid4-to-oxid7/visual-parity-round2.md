@@ -176,7 +176,7 @@ Danach im Browser mit deaktiviertem Cache dieselbe 4-Viewport-Matrix, DE → EN 
 
 ## Commit
 
-Implementierungs-Commit: `WIRD_NACH_DEM_COMMIT_EINGETRAGEN`
+Implementierungs-Commit: `e63a214`
 
 ## Definition of Done – ehrlicher Stand
 
