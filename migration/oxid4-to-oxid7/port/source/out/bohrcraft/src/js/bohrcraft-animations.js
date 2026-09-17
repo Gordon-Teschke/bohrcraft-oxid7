@@ -2,16 +2,22 @@
   "use strict";
   if (window.__bohrcraftMotionReady) return;
   window.__bohrcraftMotionReady = true;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll(".promoslider .carousel").forEach((element) => {
+
+  const initializeCarousels = () => {
     if (!window.bootstrap?.Carousel) return;
-    const carousel = window.bootstrap.Carousel.getOrCreateInstance(element, {
-      interval: reduceMotion ? false : 5500,
-      pause: "hover",
-      ride: reduceMotion ? false : "carousel",
-      touch: true,
-      wrap: true
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll(".promoslider .carousel").forEach((element) => {
+      const carousel = window.bootstrap.Carousel.getOrCreateInstance(element, {
+        interval: reduceMotion ? false : 7000,
+        pause: false,
+        ride: reduceMotion ? false : "carousel",
+        touch: true,
+        wrap: true
+      });
+      if (!reduceMotion) carousel.cycle();
     });
-    if (!reduceMotion) carousel.cycle();
-  });
+  };
+
+  if (window.bootstrap?.Carousel) initializeCarousels();
+  else window.addEventListener("load", initializeCarousels, {once: true});
 })();

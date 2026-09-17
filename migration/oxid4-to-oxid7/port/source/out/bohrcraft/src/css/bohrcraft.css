@@ -1,6 +1,5 @@
-@import url("bohrcraft-tokens.css?v=20260916-2");
-@import url("bohrcraft-layout.css?v=20260916-2");
-@import url("bohrcraft-navigation.css?v=20260916-2");
-@import url("bohrcraft-cms.css?v=20260916-2");
-@import url("bohrcraft-components.css?v=20260916-2");
-@import url("bohrcraft-responsive.css?v=20260916-2");
+/*
+ * Compatibility marker only. The split Bohrcraft stylesheets are registered
+ * through OXID's style() helper in layout/header.html.twig so every file gets
+ * OXID's own mtime-based cache-busting parameter.
+ */

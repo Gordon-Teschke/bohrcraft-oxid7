@@ -41,3 +41,32 @@ main.content a{overflow-wrap:anywhere}.material-icons{display:inline-block;margi
 .form-control:focus,.form-select:focus{border-color:var(--bc-primary);box-shadow:0 0 0 2px rgba(0,46,103,.16)}
 .articleBox,.productData{transition:box-shadow var(--bc-transition-normal)}
 .articleBox:hover,.productData:hover{box-shadow:var(--bc-shadow)}
+
+/* OXID 4 CMS compatibility and live-parity refinements. */
+.breadcrumb-wrapper{padding-top:0!important;padding-bottom:3px!important}
+main.content h1,.pageheader{margin-bottom:30px;color:var(--bc-primary);font-size:36px;font-weight:200;line-height:1.1;overflow-wrap:anywhere}
+
+.categoryDescription{max-width:100%;overflow-x:hidden}
+
+@media (min-width:768px){
+  .col-sm-push-6{position:relative;left:50%}
+  .col-sm-pull-6{position:relative;right:50%}
+}
+
+.cl-alist .list-header>.container-xxl>.row>.col-md-6:has(>img.w-100){display:none}
+.cl-alist .list-header>.container-xxl>.row>.col-md-6{width:100%}
+.cl-alist .cat-list{display:grid;width:100%;margin:22px 0 30px;padding:0;border:0;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;overflow:visible}
+.cl-alist .cat-list-item{display:flex;width:auto;min-height:190px;padding:22px 15px 18px;border:1px solid #b7c1c6;align-items:center;flex-direction:column;justify-content:center;text-decoration:none}
+.cl-alist .cat-list-item-img{display:none}
+.cl-alist .cat-list-item-name{color:var(--bc-primary);font-size:18px;font-weight:600;text-align:center}
+.cl-alist .cat-list-item-name::after{display:block;width:max-content;max-width:100%;margin:22px auto 0;padding:9px 13px;background:var(--bc-primary);color:#fff;content:"Produkte ansehen ...";font-size:14px;font-weight:400;line-height:1.2}
+html[lang="en"] .cl-alist .cat-list-item-name::after{content:"View products ..."}
+
+.bohrcraft-contact>.row>[class*="col-md-"]{width:100%}
+
+@media (max-width:767.98px){
+  .breadcrumb-wrapper{padding-top:3px!important;padding-bottom:6px!important}
+  main.content h1,.pageheader{margin-bottom:24px;font-size:32px}
+  .cl-alist .cat-list{grid-template-columns:1fr;gap:15px}
+  .cl-alist .cat-list-item{min-height:130px}
+}

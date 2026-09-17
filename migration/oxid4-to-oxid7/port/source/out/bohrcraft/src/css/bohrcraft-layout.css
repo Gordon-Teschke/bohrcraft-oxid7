@@ -17,12 +17,15 @@ main.content>.container-xxl:not(.bohrcraft-home),main.content>.container{padding
 .bc-slogan{margin:0;text-align:center;color:var(--bc-primary);font-size:19px;font-style:italic;font-weight:700}
 .bc-family-logo{display:flex;align-items:center;justify-content:flex-end;height:105px}
 .bc-family-logo img{display:block;max-width:100%;max-height:70px;width:auto;height:auto}
-.bc-family-plus img{max-width:150px}.bc-family-basic img{max-width:150px}
-.promoslider{width:100%;height:267px;overflow:hidden;background:#fff}
-.promoslider .carousel,.promoslider .carousel-inner,.promoslider .carousel-item{height:267px}
-.promoslider .carousel-item img{width:100%;height:267px;object-fit:cover;object-position:center}
-.promoslider .carousel-indicators{margin-bottom:7px}
-.promoslider .carousel-control-prev,.promoslider .carousel-control-next{width:8%}
+.bc-family-plus{grid-column:4;grid-row:1}.bc-family-basic{grid-column:3;grid-row:1}.bc-family-plus img{max-width:150px}.bc-family-basic img{max-width:150px}
+.promoslider{width:100%;height:auto;aspect-ratio:16/3;overflow:hidden;background:#fff}
+.promoslider .carousel,.promoslider .carousel-inner,.promoslider .carousel-item{height:100%}
+.promoslider .carousel-item img{width:100%;height:100%;object-fit:cover;object-position:center}
+.promoslider .carousel-indicators{display:none}
+.promoslider .carousel-control-prev,.promoslider .carousel-control-next{top:50%;bottom:auto;width:40px;height:40px;margin-top:-20px;border-radius:50%;background:rgba(0,0,0,.6);opacity:1;transition:background-color .3s}
+.promoslider .carousel-control-prev{left:15px}.promoslider .carousel-control-next{right:15px}
+.promoslider .carousel-control-prev:hover,.promoslider .carousel-control-prev:focus,.promoslider .carousel-control-next:hover,.promoslider .carousel-control-next:focus{background:rgba(0,0,0,.82)}
+.promoslider .carousel-control-prev-icon,.promoslider .carousel-control-next-icon{width:24px;height:24px}
 .bohrcraft-home{padding-top:20px!important;padding-bottom:35px!important;overflow:hidden}
 .bohrcraft-footer{margin-top:0;background:var(--bc-footer);color:#fff;font-size:14px;line-height:1.5}
 .bc-footer-main{padding-top:20px;padding-bottom:20px;min-height:0}

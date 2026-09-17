@@ -11,7 +11,7 @@
     brandItem.append(brandTemplate.content.cloneNode(true));
   }
 
-  const desktop = window.matchMedia("(min-width: 992px)");
+  const desktop = window.matchMedia("(min-width: 768px)");
   const items = [...document.querySelectorAll("#navigation > .has-subs")];
   const closeAll = (except) => items.forEach((item) => {
     if (item !== except) {
@@ -37,7 +37,12 @@
   });
 
   document.addEventListener("click", (event) => {
-    if (!event.target.closest("#mainnav")) closeAll();
+    if (event.target.closest("#mainnav, .bc-mobile-nav-head")) return;
+    closeAll();
+    const collapseElement = document.querySelector("#navbarSupportedContent.show");
+    if (!desktop.matches && collapseElement && window.bootstrap?.Collapse) {
+      window.bootstrap.Collapse.getOrCreateInstance(collapseElement, {toggle: false}).hide();
+    }
   });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {

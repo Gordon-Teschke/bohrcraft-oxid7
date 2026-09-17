@@ -1,4 +1,9 @@
-{{ style({ include: 'css/bohrcraft.css' }) }}
+{{ style({ include: 'css/bohrcraft-tokens.css' }) }}
+{{ style({ include: 'css/bohrcraft-layout.css' }) }}
+{{ style({ include: 'css/bohrcraft-navigation.css' }) }}
+{{ style({ include: 'css/bohrcraft-cms.css' }) }}
+{{ style({ include: 'css/bohrcraft-components.css' }) }}
+{{ style({ include: 'css/bohrcraft-responsive.css' }) }}
 {{ script({ include: 'js/bohrcraft-external.js', dynamic: __oxid_include_dynamic }) }}
 {{ script({ include: 'js/bohrcraft-navigation.js', dynamic: __oxid_include_dynamic }) }}
 {{ script({ include: 'js/bohrcraft-animations.js', dynamic: __oxid_include_dynamic }) }}
@@ -17,18 +22,18 @@
   <div class="bc-header-main">
     <div class="container-xxl bc-header-grid">
       <a href="{{ oViewConf.getHomeLink()|raw }}" title="{{ oxcmp_shop.oxshops__oxname.value }}" class="bohrcraft-logo"><img src="{{ oViewConf.getImageUrl(oViewConf.getViewThemeParam('sLogoFile'))|raw }}" alt="{{ oxcmp_shop.oxshops__oxname.value }}" width="173" height="105"></a>
-      <p class="bc-slogan">{% if oView.getActiveLangAbbr() == 'en' %}Competence since 1975{% else %}Kompetenz seit 1975{% endif %}</p>
+      <p class="bc-slogan">{% if oView.getActiveLangAbbr() == 'en' %}Precision for industry and trade{% else %}Präzision für Industrie und Handwerk{% endif %}</p>
       <a class="bc-family-logo bc-family-plus" href="{{ oViewConf.getHomeLink()|raw }}" aria-label="Profi Plus"><img src="{{ oViewConf.getImageUrl('logo_profiplus.png')|raw }}" alt="Profi Plus"></a>
       <a class="bc-family-logo bc-family-basic" href="{{ oViewConf.getHomeLink()|raw }}" aria-label="Profi Basic"><img src="{{ oViewConf.getImageUrl('logo_profibasic.png')|raw }}" alt="Profi Basic"></a>
     </div>
   </div>
   <div class="bc-nav-shell">
-    <div class="container-xxl bc-mobile-nav-head d-lg-none">
+    <div class="container-xxl bc-mobile-nav-head d-md-none">
       <button class="bc-menu-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ 'MENU'|translate }}"><span></span><span></span><span></span><b>{{ 'MENU'|translate }}</b></button>
       <a class="bc-mini-logo" href="{{ oViewConf.getHomeLink()|raw }}"><img src="{{ oViewConf.getImageUrl('mini-logo-bc.png')|raw }}" alt="Bohrcraft"></a>
       <div class="bc-language">{{ include_widget({ cl: "oxwLanguageList", lang: oViewConf.getActLanguageId(), _parent: oView.getClassKey(), nocookie: 1, _navurlparams: oViewConf.getNavUrlParams(), anid: oViewConf.getActArticleId() }) }}</div>
     </div>
-    <div class="bc-desktop-nav container-xxl d-none d-lg-flex">
+    <div class="bc-desktop-nav container-xxl d-none d-md-flex">
       <a class="bc-sticky-logo" href="{{ oViewConf.getHomeLink()|raw }}"><img src="{{ oViewConf.getImageUrl('mini-logo-bc.png')|raw }}" alt="Bohrcraft"></a>
       <div class="bc-language">{{ include_widget({ cl: "oxwLanguageList", lang: oViewConf.getActLanguageId(), _parent: oView.getClassKey(), nocookie: 1, _navurlparams: oViewConf.getNavUrlParams(), anid: oViewConf.getActArticleId() }) }}</div>
     </div>
