@@ -70,3 +70,49 @@ html[lang="en"] .cl-alist .cat-list-item-name::after{content:"View products ..."
   .cl-alist .cat-list{grid-template-columns:1fr;gap:15px}
   .cl-alist .cat-list-item{min-height:130px}
 }
+
+
+/* Product overview: lock legacy CMS tile styling against APEX inheritance. */
+.panel1container{
+  margin-top:18px;
+  margin-bottom:28px;
+  font-size:16px;
+  line-height:1.4;
+}
+.panel1container>.row{
+  row-gap:0;
+}
+.panel1container .panel3{
+  box-shadow:none;
+}
+.panel1container .panel3>div{
+  padding:6px 12px 10px;
+}
+.panel1container .panel3 a{
+  color:var(--bc-text);
+  font-size:16px;
+  font-weight:400;
+  line-height:1.35;
+  text-decoration:none;
+}
+.panel1container .panel3 a:hover,
+.panel1container .panel3 a:focus{
+  color:var(--bc-primary);
+  text-decoration:none;
+}
+.panel1container .panel3 img{
+  display:block;
+  width:auto;
+  max-width:100%;
+  height:auto;
+  margin-right:auto;
+  margin-left:auto;
+}
+.panel1container .panel3:hover{
+  box-shadow:var(--bc-shadow);
+}
+.panel1container + hr,
+.panel1container hr{
+  border-color:#d6d6d6;
+  opacity:1;
+}
