@@ -1,14 +1,30 @@
 <footer id="footer" class="bohrcraft-footer">
   <div class="container-xxl bc-footer-main">
     <div class="row">
-      <section class="col-12 col-md-6 bc-footer-contact" aria-labelledby="bohrcraft-contact-title"><h2 id="bohrcraft-contact-title">{% if oView.getActiveLangAbbr() == 'en' %}Contact{% else %}Kontakt{% endif %}</h2>{% include_content "oxcompanyadress" ignore missing %}</section>
-      <nav class="col-6 col-md-3" aria-labelledby="bohrcraft-information-title"><h2 id="bohrcraft-information-title">{% if oView.getActiveLangAbbr() == 'en' %}Information{% else %}Informationen{% endif %}</h2><ul class="list-unstyled">
-        {% ifcontent ident "oximpressum" set imprint %}<li><a href="{{ imprint.getLink()|raw }}">{% if oView.getActiveLangAbbr() == 'en' %}Legal notice{% else %}Impressum{% endif %}</a></li>{% endifcontent %}
-        {% ifcontent ident "oxagb" set terms %}<li><a href="{{ terms.getLink()|raw }}">{% if oView.getActiveLangAbbr() == 'en' %}Terms and Conditions{% else %}AGB{% endif %}</a></li>{% endifcontent %}
-        {% ifcontent ident "oxsecurityinfo" set privacy %}<li><a href="{{ privacy.getLink()|raw }}">{% if oView.getActiveLangAbbr() == 'en' %}Privacy policy{% else %}Datenschutz{% endif %}</a></li>{% endifcontent %}
-      </ul></nav>
-      <nav class="col-6 col-md-3" aria-labelledby="bohrcraft-products-title"><h2 id="bohrcraft-products-title">{% if oView.getActiveLangAbbr() == 'en' %}Categories{% else %}Kategorien{% endif %}</h2>{% include "widget/footer/categorylist.html.twig" %}</nav>
+      <section class="col-12 col-md-6 bc-footer-contact" aria-labelledby="bohrcraft-contact-title">
+        <h2 id="bohrcraft-contact-title">{% if oView.getActiveLangAbbr() == 'en' %}Contact{% else %}Kontakt{% endif %}</h2>
+        {% include_content "oxcompanyadress" ignore missing %}
+      </section>
+
+      <nav class="col-6 col-md-3 bc-footer-information" aria-labelledby="bohrcraft-information-title">
+        <h2 id="bohrcraft-information-title">{% if oView.getActiveLangAbbr() == 'en' %}Information{% else %}Informationen{% endif %}</h2>
+        <ul class="list-unstyled">
+          {% ifcontent ident "oximpressum" set imprint %}
+            <li><a href="{{ imprint.getLink()|raw }}">{% if oView.getActiveLangAbbr() == 'en' %}Legal notice{% else %}Impressum{% endif %}</a></li>
+          {% endifcontent %}
+          {% ifcontent ident "oxagb" set terms %}
+            <li><a href="{{ terms.getLink()|raw }}">{% if oView.getActiveLangAbbr() == 'en' %}Terms and Conditions{% else %}AGB{% endif %}</a></li>
+          {% endifcontent %}
+          {% ifcontent ident "oxsecurityinfo" set privacy %}
+            <li><a href="{{ privacy.getLink()|raw }}">{% if oView.getActiveLangAbbr() == 'en' %}Privacy policy{% else %}Datenschutz{% endif %}</a></li>
+          {% endifcontent %}
+        </ul>
+      </nav>
+
+      <nav class="col-6 col-md-3 bc-footer-categories" aria-labelledby="bohrcraft-products-title">
+        <h2 id="bohrcraft-products-title">{% if oView.getActiveLangAbbr() == 'en' %}Categories{% else %}Kategorien{% endif %}</h2>
+        {% include "widget/footer/categorylist.html.twig" %}
+      </nav>
     </div>
   </div>
-  <div class="bohrcraft-legal"><div class="container-xxl"><button type="button" class="btn btn-link" data-consent-settings>{% if oView.getActiveLangAbbr() == 'en' %}External content settings{% else %}Externe Inhalte einstellen{% endif %}</button></div></div>
 </footer>
