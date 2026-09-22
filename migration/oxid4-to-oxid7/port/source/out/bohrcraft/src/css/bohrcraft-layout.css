@@ -56,8 +56,8 @@ main.content>.container-xxl:not(.bohrcraft-home),main.content>.container{padding
 #footer .footer-box-address .footer-box-content>div>div{width:80%}
 #footer .footer-box-content ul{margin:0;padding:0;list-style:none}
 #footer .footer-box-content li{margin:0;line-height:1.4286}
-#jumptotop{position:fixed;right:35px;bottom:40px;z-index:1000;display:block;width:auto;height:auto;padding:0;border:0;background:transparent;color:#002e67;font-size:45px;line-height:1;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s linear .3s;cursor:pointer;user-select:none}
-#jumptotop .material-icons{font-size:45px;line-height:1}
+#jumptotop{position:fixed;right:35px;bottom:40px;z-index:1000;display:flex;width:45px;height:45px;padding:0;border:0;border-radius:50%;background:#002e67;color:#fff;align-items:center;justify-content:center;font-size:45px;line-height:1;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s linear .3s;cursor:pointer;user-select:none}
+#jumptotop .material-icons{margin:0;font-size:34px;line-height:1}
 #jumptotop.show{opacity:.5;visibility:visible;transition:opacity .3s}
 #jumptotop.show:hover,#jumptotop.show:focus{opacity:1}
 @media (max-width:767.98px){
