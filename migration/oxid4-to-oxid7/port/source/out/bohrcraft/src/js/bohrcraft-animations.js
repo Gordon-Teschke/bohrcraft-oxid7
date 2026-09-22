@@ -23,6 +23,21 @@
   const initializeHomeFinalTiles = () => {
     const home = document.querySelector(".bohrcraft-home");
     if (!home) return;
+
+    const trigger = [...home.querySelectorAll("a")].find((link) => {
+      const label = link.textContent.trim().toLowerCase();
+      const href = (link.getAttribute("href") || "").toLowerCase();
+      return label === "neuheiten"
+        || label === "innovations"
+        || href.includes("downloads-browse-online-news");
+    });
+
+    const container = trigger?.closest(".panel1container");
+    if (container) {
+      container.classList.add("bc-home-final-tiles");
+      return;
+    }
+
     const panels = home.querySelectorAll(".panel1container");
     panels[panels.length - 1]?.classList.add("bc-home-final-tiles");
   };
