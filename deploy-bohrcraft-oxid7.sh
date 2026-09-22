@@ -149,6 +149,18 @@ run_oe() {
   "$PHP_BIN" "$OE_CONSOLE" "$@"
 }
 
+normalize_runtime_tmp() {
+  local runtime_tmp="$SOURCE_ROOT/tmp"
+  mkdir -p "$runtime_tmp"
+
+  if [[ "$(id -u)" -eq 0 ]] && id "$RUNTIME_USER" >/dev/null 2>&1 && getent group "$RUNTIME_GROUP" >/dev/null 2>&1; then
+    chown -R "$RUNTIME_USER:$RUNTIME_GROUP" "$runtime_tmp"
+    find "$runtime_tmp" -type d -exec chmod 775 {} +
+    find "$runtime_tmp" -type f -exec chmod 664 {} +
+    chmod 775 "$runtime_tmp"
+  fi
+}
+
 http_smoke_test() {
   local url="$1"
   local code
@@ -350,14 +362,8 @@ if [[ "$SKIP_CHOWN" -eq 0 ]]; then
     fi
 
     # OXID/Twig runtime cache must remain writable by Apache/PHP.
-    RUNTIME_TMP="$SOURCE_ROOT/tmp"
-    mkdir -p "$RUNTIME_TMP"
-
     if id "$RUNTIME_USER" >/dev/null 2>&1 && getent group "$RUNTIME_GROUP" >/dev/null 2>&1; then
-      chown -R "$RUNTIME_USER:$RUNTIME_GROUP" "$RUNTIME_TMP"
-      find "$RUNTIME_TMP" -type d -exec chmod 775 {} +
-      find "$RUNTIME_TMP" -type f -exec chmod 664 {} +
-      chmod 775 "$RUNTIME_TMP"
+      normalize_runtime_tmp
       ok "Runtime tmp permissions: $RUNTIME_USER:$RUNTIME_GROUP, dirs 775, files 664"
     else
       warn "Runtime user/group not found: $RUNTIME_USER:$RUNTIME_GROUP"
@@ -427,6 +433,13 @@ pushd "$SHOP_ROOT" >/dev/null
 run_oe oe:theme:activate bohrcraft -n
 run_oe oe:cache:clear
 popd >/dev/null
+
+# OXID console commands executed as root can recreate container/Twig cache files
+# owned by root. Normalize once more before Apache/PHP-FPM serves the shop.
+if [[ "$SKIP_CHOWN" -eq 0 ]]; then
+  normalize_runtime_tmp
+  ok "Runtime tmp permissions re-normalized after OXID cache rebuild"
+fi
 
 ok "Theme bohrcraft activated and OXID cache cleared"
 
