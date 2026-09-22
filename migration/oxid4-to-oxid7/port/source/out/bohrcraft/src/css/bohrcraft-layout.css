@@ -27,14 +27,18 @@ main.content>.container-xxl:not(.bohrcraft-home),main.content>.container{padding
 .promoslider .carousel-control-prev:hover,.promoslider .carousel-control-prev:focus,.promoslider .carousel-control-next:hover,.promoslider .carousel-control-next:focus{background:rgba(0,0,0,.82)}
 .promoslider .carousel-control-prev-icon,.promoslider .carousel-control-next-icon{width:24px;height:24px}
 .bohrcraft-home{padding-top:20px!important;padding-bottom:35px!important;overflow:hidden}
-.bohrcraft-footer{margin-top:0;background:var(--bc-footer);color:#fff;font-size:14px;line-height:1.5}
-.bc-footer-main{padding-top:20px;padding-bottom:20px;min-height:0}
-.bohrcraft-footer h2{margin:0 0 16px;color:#f0f0f0;font-size:16px;font-weight:400}
+.bohrcraft-footer{margin-top:0;background:var(--bc-footer);color:#fff;font-size:14px;line-height:1.55}
+.bc-footer-main{min-height:330px;padding-top:34px;padding-bottom:44px}
+.bohrcraft-footer h2{margin:0 0 22px;color:#f0f0f0;font-size:16px;font-weight:400;line-height:1.2}
 .bohrcraft-footer a,.bohrcraft-footer .btn-link{color:#fff}
 .bohrcraft-footer a:hover,.bohrcraft-footer .btn-link:hover{color:#333}
 .bohrcraft-footer ul{padding-left:0;margin:0;list-style:none}
-.bohrcraft-footer li{margin-bottom:7px}
+.bohrcraft-footer li{margin-bottom:9px}
 .bc-footer-contact .company-name{font-weight:700;margin-bottom:10px}
-.bohrcraft-legal{border-top:1px solid #858585;background:#888;font-size:13px}
-.bohrcraft-legal>.container-xxl{min-height:35px;display:flex;align-items:center;justify-content:flex-end;gap:20px}
-.bohrcraft-legal .btn{font:inherit;text-decoration:none}
+
+.bc-footer-contact{padding-right:45px}
+.bc-footer-information,.bc-footer-categories{padding-left:15px}
+.bc-footer-contact p{margin-bottom:7px}
+.bc-footer-contact .material-icons{width:24px;margin-right:10px;color:#fff;font-size:20px}
+.bc-footer-contact a,.bc-footer-information a,.bc-footer-categories a{color:#fff}
+.bc-footer-contact a:hover,.bc-footer-information a:hover,.bc-footer-categories a:hover{color:#333}
