@@ -47,6 +47,19 @@
     fallback?.querySelector(".row")?.classList.add("bc-home-final-tiles-row");
   };
 
+  const initializeProductOverview = () => {
+    const main = document.querySelector("main.content");
+    if (!main || !main.querySelector(".panel1container .panel3")) return;
+
+    const title = main.querySelector("h1")?.textContent.trim().toLowerCase() || "";
+    const productsTitle = [...main.querySelectorAll("h2,h3,h4")]
+      .some((heading) => /^(produkte|products)$/.test(heading.textContent.trim().toLowerCase()));
+
+    if ((title === "übersicht" || title === "overview") && productsTitle) {
+      main.classList.add("bc-product-overview");
+    }
+  };
+
   const initializeCarousels = () => {
     if (!window.bootstrap?.Carousel) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -64,6 +77,7 @@
 
   initializeJumpToTop();
   initializeHomeFinalTiles();
+  initializeProductOverview();
 
   if (window.bootstrap?.Carousel) initializeCarousels();
   else window.addEventListener("load", initializeCarousels, {once: true});
