@@ -292,6 +292,27 @@ else
   log "Copy step skipped; using existing runtime files"
 fi
 
+# Keep YouTube privacy-friendly: visitors load the preview from this shop,
+# not from YouTube. The actual YouTube iframe is still created only after click.
+VIDEO_POSTER_DIR="$OUT_TARGET/img/video"
+VIDEO_POSTER_FILE="$VIDEO_POSTER_DIR/Rj8ab3Jk6l0.jpg"
+VIDEO_POSTER_URL="https://i.ytimg.com/vi/Rj8ab3Jk6l0/maxresdefault.jpg"
+
+mkdir -p "$VIDEO_POSTER_DIR"
+if [[ ! -s "$VIDEO_POSTER_FILE" ]]; then
+  require_cmd curl
+  VIDEO_POSTER_TMP="$VIDEO_POSTER_FILE.tmp"
+  if curl -fsSL --retry 2 --connect-timeout 10 "$VIDEO_POSTER_URL" -o "$VIDEO_POSTER_TMP"; then
+    mv "$VIDEO_POSTER_TMP" "$VIDEO_POSTER_FILE"
+    ok "Local YouTube poster cached: ${VIDEO_POSTER_FILE#$SHOP_ROOT/}"
+  else
+    rm -f "$VIDEO_POSTER_TMP"
+    warn "Could not cache local YouTube poster; consent placeholder remains usable."
+  fi
+else
+  ok "Local YouTube poster already present"
+fi
+
 log "5/10 PHP syntax checks"
 
 PHP_FILES=(
