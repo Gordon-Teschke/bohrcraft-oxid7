@@ -90,3 +90,14 @@ main.content>.container-xxl:not(.bohrcraft-home),main.content>.container{padding
   text-decoration:underline;
   transform:translateY(0);
 }
+
+#footer .bc-footer-categories .nav,
+#footer .bc-footer-categories ul{display:block;margin:0;padding:0}
+#footer .bc-footer-categories li{margin:0;padding:0}
+#footer .bc-footer-categories a,
+#footer .bc-footer-categories .nav-link{
+  display:block;
+  margin:0;
+  padding:0!important;
+  line-height:1.4286;
+}
