@@ -27,18 +27,40 @@ main.content>.container-xxl:not(.bohrcraft-home),main.content>.container{padding
 .promoslider .carousel-control-prev:hover,.promoslider .carousel-control-prev:focus,.promoslider .carousel-control-next:hover,.promoslider .carousel-control-next:focus{background:rgba(0,0,0,.82)}
 .promoslider .carousel-control-prev-icon,.promoslider .carousel-control-next-icon{width:24px;height:24px}
 .bohrcraft-home{padding-top:20px!important;padding-bottom:35px!important;overflow:hidden}
-.bohrcraft-footer{margin-top:0;background:var(--bc-footer);color:#fff;font-size:14px;line-height:1.55}
-.bc-footer-main{min-height:330px;padding-top:34px;padding-bottom:44px}
-.bohrcraft-footer h2{margin:0 0 22px;color:#f0f0f0;font-size:16px;font-weight:400;line-height:1.2}
+.bohrcraft-footer{margin-top:0;border-top:2px solid #555;border-bottom:2px solid #555;background:#999;color:#fff;font-size:16px;font-weight:400;line-height:1.4286}
+.bc-footer-main{padding-top:30px;padding-bottom:30px}
+
 .bohrcraft-footer a,.bohrcraft-footer .btn-link{color:#fff}
 .bohrcraft-footer a:hover,.bohrcraft-footer .btn-link:hover{color:#333}
 .bohrcraft-footer ul{padding-left:0;margin:0;list-style:none}
-.bohrcraft-footer li{margin-bottom:9px}
-.bc-footer-contact .company-name{font-weight:700;margin-bottom:10px}
+.bohrcraft-footer li{margin-bottom:0}
+.bc-footer-contact .company-name{font-weight:700}
 
-.bc-footer-contact{padding-right:45px}
+.bc-footer-contact{padding-right:15px}
 .bc-footer-information,.bc-footer-categories{padding-left:15px}
-.bc-footer-contact p{margin-bottom:7px}
-.bc-footer-contact .material-icons{width:24px;margin-right:10px;color:#fff;font-size:20px}
-.bc-footer-contact a,.bc-footer-information a,.bc-footer-categories a{color:#fff}
-.bc-footer-contact a:hover,.bc-footer-information a:hover,.bc-footer-categories a:hover{color:#333}
+
+
+
+
+
+#footer .footer-box .footer-box-title{margin:10px 0;text-transform:uppercase;color:#002e67;font-size:18px;font-weight:400;line-height:1.1}
+#footer .footer-box .footer-box-content{font-weight:400}
+#footer a{color:#fff;text-decoration:none}
+#footer a:hover,#footer a:focus{color:#333;text-decoration:none}
+#footer .footer-box-address>.footer-box-title{padding:0}
+#footer .footer-box-address .footer-box-content>.company-name{font-weight:700}
+#footer .footer-box-address .footer-box-content>div{display:table;width:100%;padding-bottom:10px}
+#footer .footer-box-address .footer-box-content>div>div,
+#footer .footer-box-address .footer-box-content>div>.material-icons{display:table-cell;vertical-align:middle}
+#footer .footer-box-address .footer-box-content>div>.material-icons{width:20%;padding-right:10px;color:#fff;font-size:24px}
+#footer .footer-box-address .footer-box-content>div>div{width:80%}
+#footer .footer-box-content ul{margin:0;padding:0;list-style:none}
+#footer .footer-box-content li{margin:0;line-height:1.4286}
+#jumptotop{position:fixed;right:35px;bottom:40px;z-index:1000;display:block;width:auto;height:auto;padding:0;border:0;background:transparent;color:#002e67;font-size:45px;line-height:1;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s linear .3s;cursor:pointer;user-select:none}
+#jumptotop .material-icons{font-size:45px;line-height:1}
+#jumptotop.show{opacity:.5;visibility:visible;transition:opacity .3s}
+#jumptotop.show:hover,#jumptotop.show:focus{opacity:1}
+@media (max-width:767.98px){
+  #footer{text-align:center}
+  #footer .footer-box{margin-bottom:30px}
+}
