@@ -32,14 +32,19 @@
         || href.includes("downloads-browse-online-news");
     });
 
+    const row = trigger?.closest(".row");
     const container = trigger?.closest(".panel1container");
+
+    row?.classList.add("bc-home-final-tiles-row");
     if (container) {
       container.classList.add("bc-home-final-tiles");
       return;
     }
 
     const panels = home.querySelectorAll(".panel1container");
-    panels[panels.length - 1]?.classList.add("bc-home-final-tiles");
+    const fallback = panels[panels.length - 1];
+    fallback?.classList.add("bc-home-final-tiles");
+    fallback?.querySelector(".row")?.classList.add("bc-home-final-tiles-row");
   };
 
   const initializeCarousels = () => {
