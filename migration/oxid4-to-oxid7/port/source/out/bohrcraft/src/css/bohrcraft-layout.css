@@ -36,5 +36,5 @@ main.content>.container-xxl:not(.bohrcraft-home),main.content>.container{padding
 .bohrcraft-footer li{margin-bottom:7px}
 .bc-footer-contact .company-name{font-weight:700;margin-bottom:10px}
 .bohrcraft-legal{border-top:1px solid #858585;background:#888;font-size:13px}
-.bohrcraft-legal>.container-xxl{min-height:35px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.bohrcraft-legal>.container-xxl{min-height:35px;display:flex;align-items:center;justify-content:flex-end;gap:20px}
 .bohrcraft-legal .btn{font:inherit;text-decoration:none}
