@@ -327,8 +327,11 @@ file_put_contents(
 );
 PHP
 
-"$PHP_BIN" "$COMPOSER_PHAR" validate --no-check-publish >/dev/null || warn "composer validate reported warnings/errors; inspect composer.json."
-"$PHP_BIN" "$COMPOSER_PHAR" dump-autoload -o
+(
+  cd "$SHOP_ROOT"
+  "$PHP_BIN" "$COMPOSER_PHAR" validate --no-check-publish >/dev/null || warn "composer validate reported warnings/errors; inspect composer.json."
+  "$PHP_BIN" "$COMPOSER_PHAR" dump-autoload -o
+)
 ok "Composer autoload rebuilt without replacing unrelated autoload entries"
 
 log "7/10 Ownership and runtime permissions"
