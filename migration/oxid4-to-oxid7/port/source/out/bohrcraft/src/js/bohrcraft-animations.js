@@ -35,6 +35,8 @@
     });
   };
 
-  initializeJumpToTop();\n\n  if (window.bootstrap?.Carousel) initializeCarousels();
+  initializeJumpToTop();
+
+  if (window.bootstrap?.Carousel) initializeCarousels();
   else window.addEventListener("load", initializeCarousels, {once: true});
 })();
