@@ -565,3 +565,20 @@ body.cl-content #content .page-header:first-child{
 body.cl-content #content{
   margin-bottom:20px;
 }
+
+
+/* Flow-compatible CMS title geometry. */
+body.cl-content main.content h1.page-header{
+  padding-bottom:9px;
+  margin-top:0;
+  margin-bottom:20px;
+  border-bottom:1px solid #eee;
+  color:#002e67;
+  font-size:36px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:.04em;
+}
+body.cl-content main.content .cmsContent{
+  padding-bottom:0;
+}
