@@ -116,3 +116,38 @@ html[lang="en"] .cl-alist .cat-list-item-name::after{content:"View products ..."
   border-color:#d6d6d6;
   opacity:1;
 }
+
+
+/* CMS typography and links: keep legacy Bohrcraft values above APEX defaults. */
+main.content{
+  color:var(--bc-text);
+  font-size:16px;
+  line-height:1.4286;
+}
+main.content a:not(.btn):not(.nav-link):not(.dropdown-item){
+  color:var(--bc-text);
+  text-decoration:none;
+}
+main.content a:not(.btn):not(.nav-link):not(.dropdown-item):hover,
+main.content a:not(.btn):not(.nav-link):not(.dropdown-item):focus{
+  color:var(--bc-primary);
+  text-decoration:none;
+}
+main.content h1{
+  color:var(--bc-primary);
+  font-size:36px;
+  font-weight:200;
+  line-height:1.1;
+}
+main.content h2{
+  color:var(--bc-primary);
+  font-size:24px;
+  font-weight:500;
+  line-height:1.1;
+}
+main.content h3{
+  color:var(--bc-primary);
+  font-size:24px;
+  font-weight:500;
+  line-height:1.1;
+}
