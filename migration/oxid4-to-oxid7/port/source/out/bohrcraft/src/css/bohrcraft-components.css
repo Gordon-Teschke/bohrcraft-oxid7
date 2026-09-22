@@ -26,7 +26,11 @@
   margin:15px auto 30px;
   padding:0;
   border:0;
-  background:var(--bc-surface);
+  background-color:var(--bc-surface);
+  background-image:url("/out/bohrcraft/img/video/Rj8ab3Jk6l0.jpg");
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:cover;
   align-items:center;
   flex-direction:column;
   justify-content:center;
@@ -45,4 +49,13 @@
   width:100%;
   height:100%;
   aspect-ratio:16/9;
+}
+
+.bohrcraft-home .bohrcraft-external[data-external-provider="youtube"]>p{
+  margin:0 0 12px;
+  padding:6px 10px;
+  background:rgba(255,255,255,.88);
+}
+.bohrcraft-home .bohrcraft-external[data-external-provider="youtube"]>[data-load-external="youtube"]{
+  box-shadow:0 1px 4px rgba(0,0,0,.28);
 }
