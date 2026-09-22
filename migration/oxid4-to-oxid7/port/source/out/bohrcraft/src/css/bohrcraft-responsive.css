@@ -66,9 +66,9 @@
   .panel2>div>div:first-of-type{width:28%}
   .panel2 .text>img{max-height:34px}
   .content img[align=right],.content img[align=left]{float:none;display:block;max-width:100%;margin:15px auto!important}
-  .bc-footer-main{padding-top:35px;padding-bottom:35px}
-  .bohrcraft-footer .row>section,.bohrcraft-footer .row>nav{margin-bottom:28px}
-  .bohrcraft-legal>.container-xxl{padding-top:12px;padding-bottom:12px;align-items:flex-start;flex-direction:column;gap:4px}
+  .bc-footer-main{padding-top:30px;padding-bottom:30px}
+  .bohrcraft-footer .row>section,.bohrcraft-footer .row>nav{margin-bottom:30px}
+  
   .bohrcraft-external-frame{min-height:260px}
   .hidden-xs{display:none!important}.visible-xs-block{display:block!important}
   .col-xs-12{flex:0 0 auto;width:100%}.col-xs-6{flex:0 0 auto;width:50%}
