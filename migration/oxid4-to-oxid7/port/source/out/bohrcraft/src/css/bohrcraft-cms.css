@@ -207,5 +207,11 @@ main.content h3{
 }
 
 .bohrcraft-home .bc-home-final-tiles{
-  margin-top:50px;
+  margin-top:0;
+  background:#fff;
+}
+.bohrcraft-home .bc-home-final-tiles-row{
+  margin-top:0!important;
+  padding-top:35px;
+  background:#fff;
 }
