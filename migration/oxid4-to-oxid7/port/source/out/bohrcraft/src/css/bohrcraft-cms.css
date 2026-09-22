@@ -438,3 +438,130 @@ body.bc-product-overview .panel2 .bottom-section a{
   line-height:1.42857143;
   letter-spacing:.04em;
 }
+
+
+/* Exact legacy typography for CMS content pages. */
+body.cl-content main.content{
+  color:#676767;
+  font-family:'Poppins','Helvetica Neue','Helvetica','Arial',sans-serif;
+  font-size:16px;
+  font-weight:400;
+  line-height:1.42857143;
+  letter-spacing:.04em;
+}
+
+body.cl-content main.content h1,
+body.cl-content main.content .h1{
+  margin-top:20px;
+  margin-bottom:10px;
+  color:#002e67;
+  font-size:36px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:.04em;
+}
+body.cl-content main.content h2,
+body.cl-content main.content .h2{
+  margin-top:20px;
+  margin-bottom:10px;
+  color:#002e67;
+  font-size:30px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:.04em;
+}
+body.cl-content main.content h3,
+body.cl-content main.content .h3{
+  margin-top:20px;
+  margin-bottom:10px;
+  color:#002e67;
+  font-size:24px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:.04em;
+}
+body.cl-content main.content h4,
+body.cl-content main.content .h4{
+  margin-top:10px;
+  margin-bottom:10px;
+  color:#002e67;
+  font-size:18px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:.04em;
+}
+body.cl-content main.content h5,
+body.cl-content main.content .h5{
+  margin-top:10px;
+  margin-bottom:10px;
+  color:#002e67;
+  font-size:14px;
+  font-weight:500;
+  line-height:1.1;
+}
+body.cl-content main.content h6,
+body.cl-content main.content .h6{
+  margin-top:10px;
+  margin-bottom:10px;
+  color:#002e67;
+  font-size:12px;
+  font-weight:500;
+  line-height:1.1;
+}
+
+body.cl-content main.content p{
+  margin-top:0;
+  margin-bottom:10px;
+}
+body.cl-content main.content ul,
+body.cl-content main.content ol{
+  margin-top:0;
+  margin-bottom:10px;
+}
+
+body.cl-content main.content a:not(.btn):not(.nav-link):not(.dropdown-item){
+  color:#002e67;
+  text-decoration:none;
+}
+body.cl-content main.content a:not(.btn):not(.nav-link):not(.dropdown-item):hover,
+body.cl-content main.content a:not(.btn):not(.nav-link):not(.dropdown-item):focus{
+  color:#002e67;
+  text-decoration:underline;
+}
+
+body.cl-content main.content hr{
+  height:0;
+  margin-top:20px;
+  margin-bottom:20px;
+  border:0;
+  border-top:1px solid #eee;
+  opacity:1;
+}
+
+body.cl-content main.content .subh3{
+  color:#002e67;
+  font-size:16px;
+  font-weight:inherit;
+}
+
+body.cl-content .breadcrumb{
+  color:#676767;
+  font-size:12px;
+  line-height:1.42857143;
+}
+body.cl-content .breadcrumb a{
+  color:#002e67;
+  font-size:12px;
+}
+
+body.cl-content .page-header{
+  padding-bottom:9px;
+  margin:40px 0 20px;
+  border-bottom:1px solid #eee;
+}
+body.cl-content #content .page-header:first-child{
+  margin-top:0;
+}
+body.cl-content #content{
+  margin-bottom:20px;
+}
