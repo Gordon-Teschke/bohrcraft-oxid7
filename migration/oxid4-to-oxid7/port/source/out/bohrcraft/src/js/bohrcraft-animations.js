@@ -20,6 +20,13 @@
     update();
   };
 
+  const initializeHomeFinalTiles = () => {
+    const home = document.querySelector(".bohrcraft-home");
+    if (!home) return;
+    const panels = home.querySelectorAll(".panel1container");
+    panels[panels.length - 1]?.classList.add("bc-home-final-tiles");
+  };
+
   const initializeCarousels = () => {
     if (!window.bootstrap?.Carousel) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -36,6 +43,7 @@
   };
 
   initializeJumpToTop();
+  initializeHomeFinalTiles();
 
   if (window.bootstrap?.Carousel) initializeCarousels();
   else window.addEventListener("load", initializeCarousels, {once: true});
