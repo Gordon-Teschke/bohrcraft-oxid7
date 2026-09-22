@@ -151,3 +151,57 @@ main.content h3{
   font-weight:500;
   line-height:1.1;
 }
+
+
+/* Product overview: restore Bootstrap-3-era geometry used by the legacy CMS. */
+.panel1container{
+  margin-top:20px;
+  margin-bottom:20px;
+}
+.panel1container>.row{
+  --bs-gutter-x:30px;
+  --bs-gutter-y:0;
+  margin-right:-15px;
+  margin-left:-15px;
+}
+.panel1container>.row>[class*="col-"]{
+  position:relative;
+  min-height:1px;
+  padding-right:15px;
+  padding-left:15px;
+  margin-bottom:35px;
+}
+.panel1container .panel3{
+  height:100%;
+  padding:0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+}
+.panel1container .panel3>div{
+  padding:7px 15px;
+}
+.panel1container .panel3 .img-responsive{
+  display:block;
+  max-width:100%;
+  height:auto;
+  margin-right:auto;
+  margin-left:auto;
+}
+.panel1container .panel3 a{
+  color:var(--bc-text);
+  font-size:16px;
+  font-weight:400;
+  line-height:1.4286;
+}
+.panel1container .panel3 a:hover,
+.panel1container .panel3 a:focus{
+  color:var(--bc-primary);
+}
+.panel1container .panel3:hover{
+  box-shadow:var(--bc-shadow);
+  transform:translateY(-1px);
+}
+.panel1container .bottom-section{
+  margin-top:10px;
+}
